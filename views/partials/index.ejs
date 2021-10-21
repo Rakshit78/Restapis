@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<body>
+  <!--<% const title = "Ourtitle"%>-->
+  <!--<%=JSON.stringify(items)%>-->
+   <%-include('./partials/nav.ejs')%>
+     <div class="container">
+      <ul class="collection with-header">
+        
+        <%  if(items.length>0)
+          {%>
+          
+            <% items.forEach(item => {%>
+              <li class="collection-item"><div><a href='/items/<%= item._id%>'><%=item.name%> $<%=item.price%></a><a href="#!" class="secondary-content">
+                <i class="material-icons">delete</i>
+                <i class="material-icons">edit</i>
+              </a></div></li>
+            <% });%>
+           
+         <% }else{%>
+           <li>There are no items</li>
+          <%}%>
+        
+        
+        
+        
+      </ul>
+    </div>
+</body>
+</html>

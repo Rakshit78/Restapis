@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<body>
+  <!--<% const title = "Ourtitle"%>-->
+  <!--<%=JSON.stringify(items)%>-->
+   <%-include('./partials/nav.ejs')%>
+     <div class="container">
+     <h4>Item-details</h4>
+     <div>
+       <h5>Item: <%=items.name%></h5>
+       <h5>Price: $<%=items.price%></h5>
+      </div>
+      <a href="" id='deleteBtn' class="delete btn" data-id="<%=items._id%>">Delete</a>
+    </div>
+  
+    <script>
+      deleteBtn.onclick = function(e)
+      {
+        e.preventDefault();
+        //const id = e.target.getAttribute('data-id');
+        const id = deleteBtn.dataset.id;
+        const endpoint = `/items/${id}`;
+        fetch(endpoint,{method:'DELETE'})
+        .then(res=>res.json())
+        .then(data=>window.location.href=data.redirect)
+        .catch(e=>{console.log(e)});
+      }
+    </script>
+</body>
+</html>
